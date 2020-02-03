@@ -11,18 +11,17 @@ import javax.faces.bean.ViewScoped;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
+//import lombok.Setter;
 
 @ManagedBean
 @ViewScoped
-public class MenuBean implements Serializable {
-	
+public class LearnBean implements Serializable  {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6099548527310926458L;
+	private static final long serialVersionUID = -2775484532876202439L;
 	@Getter(AccessLevel.PUBLIC)
-	@Setter(AccessLevel.PUBLIC)
-	private String page = "learn";
-	
+	private String question = "Wie heißt der höhste Berg Deutschlands?";
+	@Getter(AccessLevel.PUBLIC)
+	private String answer = "Antwort: Die Zugspitze (2962 m)";
 }

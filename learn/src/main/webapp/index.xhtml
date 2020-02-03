@@ -10,7 +10,6 @@
       xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
-	<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 </h:head>
 
 <h:body>
@@ -18,9 +17,9 @@
 	<h1><span>LEARN</span>ING BY DOING!</h1>
 	<h:form>
 		<p:menubar>
-			<p:menuitem value="Learn" update=":content" action="#{menuBean.setPage('learn')}" icon="pi pi-times" />
-			<p:menuitem value="Exercises" update=":content" action="#{menuBean.setPage('exercises')}" icon="pi pi-times" />
-			<p:menuitem value="Statistics" update=":content" action="#{menuBean.setPage('statistics')}" icon="pi pi-times" />
+			<p:menuitem value="Learn" update=":content" action="#{menuBean.setPage('learn')}"/>
+			<p:menuitem value="Exercises" update=":content" action="#{menuBean.setPage('exercises')}"/>
+			<p:menuitem value="Statistics" update=":content" action="#{menuBean.setPage('statistics')}"/>
 		</p:menubar>
 	</h:form> 
 	<h:panelGroup id="content" layout="block">
