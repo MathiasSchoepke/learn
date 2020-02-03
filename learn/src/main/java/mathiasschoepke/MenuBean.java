@@ -16,13 +16,9 @@ import lombok.Setter;
 @ManagedBean
 @ViewScoped
 public class MenuBean implements Serializable {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6099548527310926458L;
+	
 	@Getter(AccessLevel.PUBLIC)
 	@Setter(AccessLevel.PUBLIC)
 	private String page = "learn";
-	
 }

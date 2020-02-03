@@ -6,10 +6,6 @@ h1, h2, h3 {
 h1>span {
   color: #d9411e;
 }
-#show-answer {
-	display:table;
-	margin:0 auto;
-}
 
 .center {
     margin: 0 auto;
