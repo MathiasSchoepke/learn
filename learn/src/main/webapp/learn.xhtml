@@ -14,23 +14,23 @@
 
 <h:body>
 	<h:form id="learn">
-		<h2>Learn</h2>
+		<h2>Lernen</h2>
 		<p:steps activeIndex="3">
 			<p:menuitem value="Frage Lesen" />
 			<p:menuitem value="Antwort Anzeigen" />
 			<p:menuitem value="Bewerten" />
 		</p:steps>
-		<h3 id="question">Frage: #{learnBean.question}</h3>
+		<h3 id="question">Frage: #{learnBean.questionObject.question}</h3>
 		<div class="center" style="width: 132px;">
 			<p:commandButton value="Antwort Zeigen"
-				onclick="document.getElementById('answer').innerHTML = 'Antwort: #{learnBean.answer}'" />
+				onclick="document.getElementById('answer').innerHTML = 'Antwort: #{learnBean.questionObject.answer}'" />
 		</div>
 		<h3 id="answer"></h3>
 		<div class="center" style="width: 160px;">
 			<p:commandButton id="right" style="background-color:#34ba63;"
 				value="Richtig" update="learn" action="#{learnBean.answerRight}" />
-			<p:commandButton id="false" style="background-color:#d9411e; float:right;"
-				value="Falsch" update="learn" action="#{learnBean.answerRight}" />
+			<p:commandButton id="wrong" style="background-color:#d9411e; float:right;"
+				value="Falsch" update="learn" action="#{learnBean.answerWrong}" />
 		</div>
 	</h:form>
 </h:body>

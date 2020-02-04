@@ -26,22 +26,12 @@ public class LearnBean implements Serializable {
 	@Setter
 	private DataBean dataBean;
 	
-	private int id = 0;
 	@Getter(AccessLevel.PUBLIC)
-	private String question = "Wie heißt der höhste Berg Deutschlands?";
-	@Getter(AccessLevel.PUBLIC)
-	private String answer = "Die Zugspitze (2962 m)";
+	private QuestionOpject questionObject;
 
 	@PostConstruct
 	public void init() {
-		setQuestion(getRandomEntryFromList(dataBean.getQuestionList()));
-	}
-
-	private void setQuestion(QuestionOpject newQuestion) {
-		id = newQuestion.getId();
-		question = newQuestion.getQuestion();
-		answer = newQuestion.getAnswer();
-		
+		questionObject = getRandomEntryFromList(dataBean.getQuestionList());
 	}
 	private QuestionOpject getRandomEntryFromList(List<QuestionOpject> list) {
 		int randomInt = new Random().nextInt(list.size());
@@ -49,10 +39,10 @@ public class LearnBean implements Serializable {
 	}
 
 	public void answerRight() {
-		setQuestion(getRandomEntryFromList(dataBean.getQuestionList()));
+		questionObject = getRandomEntryFromList(dataBean.getQuestionList());
 	}
 
-	public void answerFalse() {
-		setQuestion(getRandomEntryFromList(dataBean.getQuestionList()));
+	public void answerWrong() {
+		questionObject = getRandomEntryFromList(dataBean.getQuestionList());
 	}
 }

@@ -22,9 +22,9 @@ public class DataBean implements Serializable {
 	public void init() {
 		questionList = Arrays.asList(
 				new QuestionOpject(0, "Wie heißt der höhste Berg Deutschlands?", "Die Zugspitze (2962 m)"),
-				new QuestionOpject(15, "Wie viele Bundesländer hat Deuntschland?", "16"),
-				new QuestionOpject(78, "Wann gewann Deutschland den Eurovision?", "Berlin"),
-				new QuestionOpject(78, "Wie heißt die Hauptstandt von Deuntschland?", "1982 und 2010"),
+				new QuestionOpject(15, "Wie viele Bundesländer hat Deutschland?", "16"),
+				new QuestionOpject(78, "Wie heißt die Hauptstandt von Deutschland?", "Berlin"),
+				new QuestionOpject(78, "Wann gewann Deutschland den Eurovision?", "1982 und 2010"),
 				new QuestionOpject(78, "Wann und wie oft war Deutschland Fußball-Weltmeister?", "1954, 1974, 1990, 2014"));
 	}
 
