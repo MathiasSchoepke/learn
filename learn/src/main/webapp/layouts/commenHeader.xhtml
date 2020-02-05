@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition>
+	<h:outputStylesheet name="css/style.css" />
+	<h:form>
+	<p:commandLink action="#{menuBean.changeContent('index')}">
+		<h1>
+			<span>LEARN</span>ING BY DOING!
+		</h1>
+	</p:commandLink>
+		<p:menubar>
+			<p:menuitem value="Lernen"
+				action="#{menuBean.changeContent('learn')}" />
+			<p:menuitem value="Verwalten"
+				action="#{menuBean.changeContent('manage')}" />
+			<p:menuitem value="Statistiken"
+				action="#{menuBean.changeContent('statistics')}" />
+		</p:menubar>
+	</h:form>
+</ui:composition>
+
+</html>

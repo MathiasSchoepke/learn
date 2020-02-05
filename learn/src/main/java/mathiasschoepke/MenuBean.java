@@ -21,4 +21,8 @@ public class MenuBean implements Serializable {
 	@Getter(AccessLevel.PUBLIC)
 	@Setter(AccessLevel.PUBLIC)
 	private String page = "learn";
+	
+	public String changeContent(String page) {
+		return page+".xhtml";
+	}
 }

@@ -13,17 +13,12 @@
 </h:head>
 
 <h:body>
-	<h:outputStylesheet name="css/style.css" />
-	<h1><span>LEARN</span>ING BY DOING!</h1>
-	<h:form>
-		<p:menubar>
-			<p:menuitem value="Lernen" update=":content" action="#{menuBean.setPage('learn')}"/>
-			<p:menuitem value="Verwalten" update=":content" action="#{menuBean.setPage('manage')}"/>
-			<p:menuitem value="Statistiken" update=":content" action="#{menuBean.setPage('statistics')}"/>
-		</p:menubar>
-	</h:form> 
-	<h:panelGroup id="content" layout="block">
-	    <ui:include src="#{menuBean.page}.xhtml" />
-	</h:panelGroup>
+	<ui:composition template="/layouts/commenLayout.xhtml">
+		<ui:define name="content">
+		
+		<h2>StartSeite</h2>
+		
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

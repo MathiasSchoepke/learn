@@ -2,13 +2,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
 
 <h:body>
-    <h2>Verwalten</h2>
-    <p>view add remove edit</p>
+	<ui:composition template="/layouts/commenLayout.xhtml">
+		<ui:define name="content">
+
+			<h:form id="manage">
+				<h2>Verwalten</h2>
+				<h:form>
+					<p:commandButton value="Frage Erstellen"
+						onclick="PF('dlg').show();" />
+
+					<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+					<p:dialog header="Frage Erstellen" widgetVar="dlg"
+						resizable="false">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="question" value="Frage:" />
+							<p:inputText id="question" value="#{userLoginView.question}"
+								required="true" />
+
+							<h:outputLabel for="answer" value="Antwort:" />
+							<p:inputText id="answer" value="#{userLoginView.answer}"
+								required="true" />
+
+							<f:facet name="footer">
+								<p:commandButton value="Erstellen" />
+							</f:facet>
+						</h:panelGrid>
+					</p:dialog>
+				</h:form>
+
+
+				<hr />
+				<c:forEach var="entry" items="${manageBean.dataBean.questionList}"
+					varStatus="loop">
+					<div>
+						<span>ID:${entry.id} FRAGE:${entry.question}
+							ANTWORT:${entry.answer} </span>
+						<p:commandButton value="Bearbeiten" />
+						<p:commandButton value="Löschen" />
+					</div>
+					<hr />
+				</c:forEach>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
