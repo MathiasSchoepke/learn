@@ -1,16 +1,4 @@
 /* LEARN */
-
-form#learn .right {
-	background-color: #9dc750;
-	border-color: #99c24f;
-}
-form#learn .wrong {
-	background-color: #c23934;
-	border-color: #ad3b37;
-}
-
-
-
 form#learn .ui-steps .ui-steps-item {
     width: 33%;
 }
@@ -50,3 +38,4 @@ form#learn .ui-steps.custom .ui-steps-item .ui-menuitem-link .ui-steps-title {
  
 form#learn .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-steps-title {
     color: #555;
+}

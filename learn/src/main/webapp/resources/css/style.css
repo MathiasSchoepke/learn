@@ -1,4 +1,7 @@
-@import "style_learn.css";
+/* @import "style_learn.css"; */
+
+form#manage {
+}
 
 h1, h2, h3 {
 	text-align: center;
@@ -23,4 +26,47 @@ h1>span {
 #inner-div {
 	display: inline-block;
 	margin: 0 auto;
+}
+
+
+/* LEARN */
+form#learn .ui-steps .ui-steps-item {
+    width: 33%;
+}
+ 
+form#learn .ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+form#learn .ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+form#learn .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+    overflow: visible;
+    border: 1px solid #c8c8c8;
+    display: block;
+    background-color: #FFFFFF;
+}
+ 
+form#learn .ui-steps.custom .ui-steps-item .ui-menuitem-link .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    position: relative;
+    top: -3px;
+}
+ 
+form#learn .ui-steps.custom .ui-steps-item .ui-menuitem-link .ui-steps-title {
+    margin-top: -6px;
+}
+ 
+form#learn .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-steps-title {
+    color: #555;
 }
