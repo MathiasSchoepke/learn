@@ -18,6 +18,7 @@
 
 			<h:form id="manage">
 				<h2>Verwalten</h2>
+
 				<h:form>
 					<p:commandButton value="Frage Erstellen"
 						onclick="PF('dlg').show();" />
@@ -42,18 +43,47 @@
 					</p:dialog>
 				</h:form>
 
+				<p:dataTable var="entry" value="#{manageBean.questionList}">
+					<p:column headerText="Id" style="width:75px">
+						<h:outputText value="#{entry.id}" />
+					</p:column>
 
-				<hr />
-				<c:forEach var="entry" items="${manageBean.dataBean.questionList}"
-					varStatus="loop">
-					<div>
-						<span>ID:${entry.id} FRAGE:${entry.question}
-							ANTWORT:${entry.answer} </span>
-						<p:commandButton value="Bearbeiten" />
-						<p:commandButton value="Löschen" />
-					</div>
-					<hr />
-				</c:forEach>
+					<p:column headerText="Frage">
+						<h:outputText value="#{entry.question}" />
+					</p:column>
+
+					<p:column headerText="Antwort">
+						<h:outputText value="#{entry.answer}" />
+					</p:column>
+					<p:column headerText="" style="width:30px">
+						<p:commandButton icon="pi pi-pencil" title="Bearbeiten" />
+					</p:column>
+					<p:column headerText="" style="width:30px">
+						<p:commandButton icon="pi pi-trash" title="Löschen" oncomplete="PF('entryRemove').show()">
+							<f:setPropertyActionListener value="#{entry}" target="#{manageBean.selectedQuestion}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog header="Car Info" widgetVar="entryRemove" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="carDetail" style="text-align:center;">
+						<p:panelGrid columns="2"
+							rendered="#{not empty manageBean.selectedQuestion}"
+							columnClasses="label,value">
+
+							<h:outputText value="Id:" />
+							<h:outputText value="#{manageBean.selectedQuestion.id}" />
+
+							<h:outputText value="Frage:" />
+							<h:outputText value="#{manageBean.selectedQuestion.question}" />
+
+							<h:outputText value="Antwort:" />
+							<h:outputText value="#{manageBean.selectedQuestion.answer}" />
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
 			</h:form>
 
 		</ui:define>
