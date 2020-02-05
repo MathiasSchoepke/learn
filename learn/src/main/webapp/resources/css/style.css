@@ -30,6 +30,16 @@ h1>span {
 
 
 /* LEARN */
+form#learn .right {
+	background-color: #9dc750;
+	border-color: #99c24f;
+}
+
+form#learn .wrong {
+	background-color: #c23934;
+	border-color: #ad3b37;
+}
+
 form#learn .ui-steps .ui-steps-item {
     width: 33%;
 }
