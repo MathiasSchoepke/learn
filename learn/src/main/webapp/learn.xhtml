@@ -17,24 +17,33 @@
 		<ui:define name="content">
 
 			<h:form id="learn">
+
 				<h2>Lernen</h2>
 				<p:steps activeIndex="3">
-					<p:menuitem value="Frage Lesen" />
-					<p:menuitem value="Antwort Anzeigen" />
-					<p:menuitem value="Bewerten" />
+					<p:menuitem value="ANTWORTEN" />
+					<p:menuitem value="LÖSUNG ANZEIGEN" />
+					<p:menuitem value="BEWERTEN" />
 				</p:steps>
-				<h3 id="question">Frage: #{learnBean.questionObject.question}</h3>
-				<div class="center" style="width: 132px;">
-					<p:commandButton value="Antwort Zeigen"
-						onclick="document.getElementById('answer').innerHTML = 'Antwort: #{learnBean.questionObject.answer}'" />
-				</div>
-				<h3 id="answer"></h3>
-				<div class="center" style="width: 160px;">
-					<p:commandButton id="right" style="background-color:#34ba63;"
-						value="Richtig" update="learn" action="#{learnBean.answerRight}" />
-					<p:commandButton id="wrong"
-						style="background-color:#d9411e; float:right;" value="Falsch"
-						update="learn" action="#{learnBean.answerWrong}" />
+
+				<h2>
+					<h:outputText id="question"
+						value="#{learnBean.questionObject.question}"></h:outputText>
+				</h2>
+				<h2>
+					<h:outputText id="answer" rendered="#{learnBean.showAnswer}"
+						value="#{learnBean.questionObject.answer}"></h:outputText>
+				</h2>
+				<div id="outer-div" width="100%">
+					<div id="inner-div">
+						<p:commandButton value="Antwort anzeigen"
+							rendered="#{not learnBean.showAnswer}"
+							action="#{learnBean.doShowAnswer()}" styleClass="show" />
+						<p:commandButton value="Richtig"
+							rendered="#{learnBean.showAnswer}"
+							action="#{learnBean.answerRight()}" styleClass="right" />
+						<p:commandButton value="Falsch" rendered="#{learnBean.showAnswer}"
+							action="#{learnBean.answerWrong()}" styleClass="wrong" />
+					</div>
 				</div>
 			</h:form>
 

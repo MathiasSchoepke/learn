@@ -1,64 +1,61 @@
 package mathiasschoepke;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
-//import javax.faces.event.ActionEvent;
+
+import org.primefaces.PrimeFaces;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+//@Named // Use @javax.faces.bean.ManagedBean on outdated environments.
 @ManagedBean
-@ViewScoped
-public class LearnBean implements Serializable {
-	private static final long serialVersionUID = -2775484532876202439L;
+@RequestScoped // Use @javax.faces.bean.RequestScoped on outdated environments.
+public class LearnBean {
+
+	@Getter
+	private QuestionOpject questionObject;
+	@Getter
+	private Boolean showAnswer;
 
 	@ManagedProperty(value = "#{dataBean}")
 	@Getter
 	@Setter
 	private DataBean dataBean;
 
-	@Getter(AccessLevel.PUBLIC)
-	private QuestionOpject questionObject;
-
 	@PostConstruct
 	public void init() {
-		if(dataBean.getLastQuestionObject() == null) {
-			dataBean.setLastQuestionObject(getRandomEntryFromList(dataBean.getQuestionList()));
-		}
-		
-		questionObject = getNewQuestion(dataBean.getLastQuestionObject());
-		dataBean.setLastQuestionObject(questionObject);
+		questionObject = dataBean.getQuestionObject();
+		showAnswer = dataBean.getShowAnswer();
 	}
-
-	private QuestionOpject getNewQuestion(QuestionOpject oldQustion) {
-		QuestionOpject newQuestion;
-		
-		do{
-			newQuestion = getRandomEntryFromList(dataBean.getQuestionList());
-        }while(newQuestion.getId() == oldQustion.getId());
-		
-		return newQuestion;
+	
+	public void doShowAnswer() {
+		showAnswer = true;
+		dataBean.setShowAnswer(true);
+		PrimeFaces.Ajax currentAjax = PrimeFaces.current().ajax();
+		currentAjax.update("learn");
 	}
-
-	private QuestionOpject getRandomEntryFromList(List<QuestionOpject> list) {
-		int randomInt = new Random().nextInt(list.size());
-		return list.get(randomInt);
-	}
-
+	
 	public void answerRight() {
-		System.out.println("right: "+dataBean.getLastQuestionObject().getQuestion());
+		System.out.println("right");
+		System.out.println("last question:"+ questionObject.getQuestion());
+		submit();
 	}
 
 	public void answerWrong() {
-		System.out.println("wrong: "+dataBean.getLastQuestionObject().getQuestion());
+		System.out.println("wrong");
+		System.out.println("last question:"+ questionObject.getQuestion());
+		submit();
+	}
+
+	private void submit() {
+		questionObject = dataBean.getNewQuestion();
+		showAnswer = false;
+		dataBean.setShowAnswer(false);
+		PrimeFaces.Ajax currentAjax = PrimeFaces.current().ajax();
+		currentAjax.update("learn");
 	}
 }
