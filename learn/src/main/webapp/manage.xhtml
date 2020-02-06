@@ -55,7 +55,7 @@
 
 						<f:facet name="footer">
 							<p:commandButton value="Erstellen" />
-							<p:commandButton value="Abbrechen" />
+							<p:commandButton value="Abbrechen" oncomplete="PF('entryAdd').hide();" />
 						</f:facet>
 					</h:panelGrid>
 				</p:dialog>
@@ -71,7 +71,7 @@
 
 						<f:facet name="footer">
 							<p:commandButton value="Bearbeiten" />
-							<p:commandButton value="Abbrechen" />
+							<p:commandButton value="Abbrechen" oncomplete="PF('entryEdit').hide();" />
 						</f:facet>
 					</h:panelGrid>
 				</p:dialog>
@@ -86,7 +86,7 @@
 						<h:outputText value="#{manageBean.selectedQuestion.answer}" />
 						<f:facet name="footer">
 							<p:commandButton value="Löschen" />
-							<p:commandButton value="Abbrechen" />
+							<p:commandButton value="Abbrechen" oncomplete="PF('entryRemove').hide();" />
 						</f:facet>
 					</p:panelGrid>
 				</p:dialog>
