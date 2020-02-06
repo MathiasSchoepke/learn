@@ -31,9 +31,9 @@
 					<div id="inner-div">
 						<p:commandButton value="Antwort anzeigen" rendered="#{not learnBean.showAnswer}"
 							action="#{learnBean.doShowAnswer()}" styleClass="show" />
-						<p:commandButton value="Richtig" rendered="#{learnBean.showAnswer}" action="#{learnBean.answerRight()}"
+						<p:commandButton value="Richtig" rendered="#{learnBean.showAnswer}" action="#{learnBean.submit(true)}"
 							styleClass="right" />
-						<p:commandButton value="Falsch" rendered="#{learnBean.showAnswer}" action="#{learnBean.answerWrong()}"
+						<p:commandButton value="Falsch" rendered="#{learnBean.showAnswer}" action="#{learnBean.submit(false)}"
 							styleClass="wrong" />
 					</div>
 				</div>
