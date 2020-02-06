@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 //import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 public class DataBean implements Serializable {
 	private static final long serialVersionUID = 7964334770565974366L;

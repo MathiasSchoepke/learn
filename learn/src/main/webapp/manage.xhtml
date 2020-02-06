@@ -15,7 +15,8 @@
 			<h:form id="manage">
 				<h2>Verwalten</h2>
 
-				<p:commandButton value="Frage Erstellen" process="@this" update=":manage:addDialog" oncomplete="PF('entryAdd').show();">
+				<p:commandButton value="Frage Erstellen" process="@this" update=":manage:addDialog"
+					oncomplete="PF('entryAdd').show();">
 					<f:setPropertyActionListener value="" target="#{manageBean.addQuestion}" />
 					<f:setPropertyActionListener value="" target="#{manageBean.addAnswer}" />
 				</p:commandButton>
@@ -51,7 +52,7 @@
 						<p:inputText id="addQuestion" value="#{manageBean.addQuestion}" required="true" />
 
 						<h:outputLabel value="Antwort:" />
-												<p:inputText id="addAnswer" value="#{manageBean.addAnswer}" required="true" />
+						<p:inputText id="addAnswer" value="#{manageBean.addAnswer}" required="true" />
 
 						<f:facet name="footer">
 							<p:commandButton value="Erstellen" />
@@ -64,7 +65,7 @@
 					hideEffect="fade" resizable="false">
 					<h:panelGrid columns="2" cellpadding="5">
 						<h:outputLabel value="Frage:" />
-												<p:inputText id="editQuestion" value="#{manageBean.editQuestion}" required="true" />
+						<p:inputText id="editQuestion" value="#{manageBean.editQuestion}" required="true" />
 
 						<h:outputLabel value="Antwort:" />
 						<p:inputText id="editAnswer" value="#{manageBean.editAnswer}" required="true" />
@@ -85,7 +86,8 @@
 						<h:outputText value="Antwort:" />
 						<h:outputText value="#{manageBean.selectedQuestion.answer}" />
 						<f:facet name="footer">
-							<p:commandButton value="Löschen" />
+							<p:commandButton process="@this" value="Löschen" action="#{manageBean.removeQuestion()}"
+								oncomplete="PF('entryRemove').hide();" />
 							<p:commandButton value="Abbrechen" oncomplete="PF('entryRemove').hide();" />
 						</f:facet>
 					</p:panelGrid>

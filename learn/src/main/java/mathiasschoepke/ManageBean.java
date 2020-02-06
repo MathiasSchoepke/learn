@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-//import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ManageBean implements Serializable {
 	private static final long serialVersionUID = -4829244622184322249L;
@@ -38,13 +37,20 @@ public class ManageBean implements Serializable {
 	@Setter
 	private QuestionOpject selectedQuestion;
 
-	@ManagedProperty(value="#{dataBean}")
 	@Getter(AccessLevel.PUBLIC)
 	@Setter
+	@Inject
 	private DataBean dataBean;
 
 	@PostConstruct
 	public void init() {
 		questionList = dataBean.getQuestionList();
+	}
+
+	public void removeQuestion() {
+		System.out.println("removeQuestion: ");
+		System.out.println("removeQuestion: " + selectedQuestion);
+		// questionList.remove(selectedQuestion);
+		// dataBean.getQuestionList().remove(selectedQuestion);
 	}
 }

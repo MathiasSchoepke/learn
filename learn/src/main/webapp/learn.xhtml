@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
@@ -26,23 +22,19 @@
 				</p:steps>
 
 				<h2>
-					<h:outputText id="question"
-						value="#{learnBean.questionObject.question}"></h:outputText>
+					<h:outputText id="question" value="#{learnBean.questionObject.question}"></h:outputText>
 				</h2>
 				<h2>
-					<h:outputText id="answer" rendered="#{learnBean.showAnswer}"
-						value="#{learnBean.questionObject.answer}"></h:outputText>
+					<h:outputText id="answer" rendered="#{learnBean.showAnswer}" value="#{learnBean.questionObject.answer}"></h:outputText>
 				</h2>
 				<div id="outer-div">
 					<div id="inner-div">
-						<p:commandButton value="Antwort anzeigen"
-							rendered="#{not learnBean.showAnswer}"
+						<p:commandButton value="Antwort anzeigen" rendered="#{not learnBean.showAnswer}"
 							action="#{learnBean.doShowAnswer()}" styleClass="show" />
-						<p:commandButton value="Richtig"
-							rendered="#{learnBean.showAnswer}"
-							action="#{learnBean.answerRight()}" styleClass="right" />
-						<p:commandButton value="Falsch" rendered="#{learnBean.showAnswer}"
-							action="#{learnBean.answerWrong()}" styleClass="wrong" />
+						<p:commandButton value="Richtig" rendered="#{learnBean.showAnswer}" action="#{learnBean.answerRight()}"
+							styleClass="right" />
+						<p:commandButton value="Falsch" rendered="#{learnBean.showAnswer}" action="#{learnBean.answerWrong()}"
+							styleClass="wrong" />
 					</div>
 				</div>
 			</h:form>

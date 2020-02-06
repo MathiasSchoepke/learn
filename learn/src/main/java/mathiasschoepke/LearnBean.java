@@ -1,33 +1,35 @@
 package mathiasschoepke;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-//import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Named // Use @javax.faces.bean.ManagedBean on outdated environments.
-@ManagedBean
-@RequestScoped // Use @javax.faces.bean.RequestScoped on outdated environments.
-public class LearnBean {
+@Named
+@ViewScoped
+public class LearnBean implements Serializable {
+	private static final long serialVersionUID = 2586271925244067596L;
 
 	@Getter
 	private QuestionOpject questionObject;
 	@Getter
 	private Boolean showAnswer;
 
-	@ManagedProperty(value = "#{dataBean}")
 	@Getter
 	@Setter
-	private DataBean dataBean;
+	@Inject
+	DataBean dataBean;
 
 	@PostConstruct
 	public void init() {
+		System.out.println(dataBean);
 		questionObject = dataBean.getQuestionObject();
 		showAnswer = dataBean.getShowAnswer();
 	}
