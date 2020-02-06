@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
@@ -19,69 +15,80 @@
 			<h:form id="manage">
 				<h2>Verwalten</h2>
 
-				<h:form>
-					<p:commandButton value="Frage Erstellen"
-						onclick="PF('dlg').show();" />
-
-					<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
-					<p:dialog header="Frage Erstellen" widgetVar="dlg"
-						resizable="false">
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputLabel for="question" value="Frage:" />
-							<p:inputText id="question" value="#{userLoginView.question}"
-								required="true" />
-
-							<h:outputLabel for="answer" value="Antwort:" />
-							<p:inputText id="answer" value="#{userLoginView.answer}"
-								required="true" />
-
-							<f:facet name="footer">
-								<p:commandButton value="Erstellen" />
-							</f:facet>
-						</h:panelGrid>
-					</p:dialog>
-				</h:form>
+				<p:commandButton value="Frage Erstellen" process="@this" update=":manage:addDialog" oncomplete="PF('entryAdd').show();">
+					<f:setPropertyActionListener value="" target="#{manageBean.addQuestion}" />
+					<f:setPropertyActionListener value="" target="#{manageBean.addAnswer}" />
+				</p:commandButton>
 
 				<p:dataTable var="entry" value="#{manageBean.questionList}">
-					<p:column headerText="Id" style="width:75px">
-						<h:outputText value="#{entry.id}" />
-					</p:column>
-
 					<p:column headerText="Frage">
 						<h:outputText value="#{entry.question}" />
 					</p:column>
-
 					<p:column headerText="Antwort">
 						<h:outputText value="#{entry.answer}" />
 					</p:column>
 					<p:column headerText="" style="width:30px">
-						<p:commandButton icon="pi pi-pencil" title="Bearbeiten" />
+						<p:commandButton process="@this" update=":manage:editDialog" icon="pi pi-pencil" title="Bearbeiten"
+							oncomplete="PF('entryEdit').show()">
+							<f:setPropertyActionListener value="#{entry.question}" target="#{manageBean.editQuestion}" />
+							<f:setPropertyActionListener value="#{entry.answer}" target="#{manageBean.editAnswer}" />
+						</p:commandButton>
 					</p:column>
 					<p:column headerText="" style="width:30px">
-						<p:commandButton icon="pi pi-trash" title="Löschen" oncomplete="PF('entryRemove').show()">
+						<p:commandButton process="@this" update=":manage:deleteDialog" icon="pi pi-trash" title="Löschen"
+							oncomplete="PF('entryRemove').show()">
 							<f:setPropertyActionListener value="#{entry}" target="#{manageBean.selectedQuestion}" />
+							<ui:debug hotkey="q" rendered="true" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog header="Car Info" widgetVar="entryRemove" modal="true"
-					showEffect="fade" hideEffect="fade" resizable="false">
-					<p:outputPanel id="carDetail" style="text-align:center;">
-						<p:panelGrid columns="2"
-							rendered="#{not empty manageBean.selectedQuestion}"
-							columnClasses="label,value">
+				<!-- dialogs -->
+				<p:dialog id="addDialog" header="Frage Erstellen" widgetVar="entryAdd" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel value="Frage:" />
+						<p:inputText id="addQuestion" value="#{manageBean.addQuestion}" required="true" />
 
-							<h:outputText value="Id:" />
-							<h:outputText value="#{manageBean.selectedQuestion.id}" />
+						<h:outputLabel value="Antwort:" />
+												<p:inputText id="addAnswer" value="#{manageBean.addAnswer}" required="true" />
 
-							<h:outputText value="Frage:" />
-							<h:outputText value="#{manageBean.selectedQuestion.question}" />
+						<f:facet name="footer">
+							<p:commandButton value="Erstellen" />
+							<p:commandButton value="Abbrechen" />
+						</f:facet>
+					</h:panelGrid>
+				</p:dialog>
 
-							<h:outputText value="Antwort:" />
-							<h:outputText value="#{manageBean.selectedQuestion.answer}" />
-						</p:panelGrid>
-					</p:outputPanel>
+				<p:dialog id="editDialog" header="Frage Bearbeiten" widgetVar="entryEdit" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel value="Frage:" />
+												<p:inputText id="editQuestion" value="#{manageBean.editQuestion}" required="true" />
+
+						<h:outputLabel value="Antwort:" />
+						<p:inputText id="editAnswer" value="#{manageBean.editAnswer}" required="true" />
+
+						<f:facet name="footer">
+							<p:commandButton value="Bearbeiten" />
+							<p:commandButton value="Abbrechen" />
+						</f:facet>
+					</h:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="deleteDialog" header="Frage wirklich Löschen?" widgetVar="entryRemove" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<p:panelGrid columns="2">
+						<h:outputText value="Frage:" />
+						<h:outputText value="#{manageBean.selectedQuestion.question}" />
+
+						<h:outputText value="Antwort:" />
+						<h:outputText value="#{manageBean.selectedQuestion.answer}" />
+						<f:facet name="footer">
+							<p:commandButton value="Löschen" />
+							<p:commandButton value="Abbrechen" />
+						</f:facet>
+					</p:panelGrid>
 				</p:dialog>
 
 			</h:form>

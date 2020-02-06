@@ -23,6 +23,19 @@ public class ManageBean implements Serializable {
 
 	@Getter
 	@Setter
+	private String addQuestion;
+	@Getter
+	@Setter
+	private String addAnswer;
+	@Getter
+	@Setter
+	private String editQuestion;
+	@Getter
+	@Setter
+	private String editAnswer;
+
+	@Getter
+	@Setter
 	private QuestionOpject selectedQuestion;
 
 	@ManagedProperty(value="#{dataBean}")
