@@ -43,10 +43,8 @@ public class LearnBean implements Serializable {
 
 	public void submit(Boolean isAnswerCorrect) {
 		showAnswer = false;
-		System.out.println(isAnswerCorrect + " : " + questionObject.getQuestion());
-
+		dataBean.rateQuestion(questionObject.getId(), isAnswerCorrect);
 		questionObject = getNewQuestion(questionObject);
-
 		PrimeFaces.Ajax currentAjax = PrimeFaces.current().ajax();
 		currentAjax.update("learn");
 	}
