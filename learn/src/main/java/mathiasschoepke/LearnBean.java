@@ -31,7 +31,7 @@ public class LearnBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		questionObject = getRandomEntryFromList(dataBean.getQuestionList());
+		questionObject = getRandomEntryFromList(dataBean.getData().getQuestionList());
 		showAnswer = false;
 	}
 	
@@ -53,7 +53,7 @@ public class LearnBean implements Serializable {
 		QuestionOpject newQuestion;
 
 		do {
-			newQuestion = getRandomEntryFromList(dataBean.getQuestionList());
+			newQuestion = getRandomEntryFromList(dataBean.getData().getQuestionList());
 		} while (newQuestion.getId() == oldQuestion.getId());
 
 		questionObject = newQuestion;

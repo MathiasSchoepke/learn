@@ -44,7 +44,7 @@ public class ManageBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		questionList = dataBean.getQuestionList();
+		questionList = dataBean.getData().getQuestionList();
 	}
 
 	public void addQuestion() {

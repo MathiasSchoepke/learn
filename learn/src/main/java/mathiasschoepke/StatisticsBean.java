@@ -38,7 +38,7 @@ public class StatisticsBean implements Serializable {
 		int step4 = 0;
 		int step5 = 0;
 
-		for (Iterator<QuestionOpject> iter = databean.getQuestionList().iterator(); iter.hasNext();) {
+		for (Iterator<QuestionOpject> iter = databean.getData().getQuestionList().iterator(); iter.hasNext();) {
 			QuestionOpject entry = iter.next();
 
 			switch (entry.getRating()) {

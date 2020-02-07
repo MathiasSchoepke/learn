@@ -12,10 +12,10 @@ public class QuestionOpject{
 	private String answer;
 	private int rating;
 	
-	public QuestionOpject(int id, String question, String answer) {
+	public QuestionOpject(int id, String question, String answer, int rating) {
 		this.id = id;
 		this.question = question;
 	    this.answer = answer;
-		this.rating = 0;
+		this.rating = rating;
 	  }
 }
