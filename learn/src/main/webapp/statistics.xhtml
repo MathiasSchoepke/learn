@@ -16,7 +16,7 @@
 		<ui:define name="content">
 
 			<h2>Statistiken</h2>
-			<p>view your progress</p>
+			<p:chart type="pie" model="#{statisticsBean.pieModel}" style="width:400px;height:300px" />
 
 		</ui:define>
 	</ui:composition>
