@@ -47,10 +47,15 @@ public class ManageBean implements Serializable {
 		questionList = dataBean.getQuestionList();
 	}
 
+	public void addQuestion() {
+		dataBean.addQuestion(addQuestion, addAnswer);
+	}
+
+	public void editQuestion() {
+		dataBean.editQuestion(selectedQuestion.getId(), editQuestion, editAnswer);
+	}
+
 	public void removeQuestion() {
-		System.out.println("removeQuestion: ");
-		System.out.println("removeQuestion: " + selectedQuestion);
-		// questionList.remove(selectedQuestion);
-		// dataBean.getQuestionList().remove(selectedQuestion);
+		dataBean.removeQuestion(selectedQuestion.getId());
 	}
 }

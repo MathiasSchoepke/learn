@@ -14,14 +14,11 @@
 
 			<h:form id="manage">
 				<h2>Verwalten</h2>
-
-				<p:commandButton value="Frage Erstellen" process="@this" update=":manage:addDialog"
-					oncomplete="PF('entryAdd').show();">
-					<f:setPropertyActionListener value="" target="#{manageBean.addQuestion}" />
-					<f:setPropertyActionListener value="" target="#{manageBean.addAnswer}" />
-				</p:commandButton>
-
-				<p:dataTable var="entry" value="#{manageBean.questionList}">
+				<p:commandButton process="@this" value="Frage Erstellen" update=":manage:addDialog" oncomplete="PF('entryAdd').show();" />
+				<!-- 						<f:setPropertyActionListener value="" target="#{manageBean.addQuestion}" /> -->
+				<!-- 						<f:setPropertyActionListener value="" target="#{manageBean.addAnswer}" /> -->
+				<!-- 					</p:commandButton> -->
+				<p:dataTable id="questionTable" var="entry" value="#{manageBean.questionList}">
 					<p:column headerText="Frage">
 						<h:outputText value="#{entry.question}" />
 					</p:column>
@@ -33,67 +30,90 @@
 							oncomplete="PF('entryEdit').show()">
 							<f:setPropertyActionListener value="#{entry.question}" target="#{manageBean.editQuestion}" />
 							<f:setPropertyActionListener value="#{entry.answer}" target="#{manageBean.editAnswer}" />
+							<f:setPropertyActionListener value="#{entry}" target="#{manageBean.selectedQuestion}" />
 						</p:commandButton>
 					</p:column>
 					<p:column headerText="" style="width:30px">
 						<p:commandButton process="@this" update=":manage:deleteDialog" icon="pi pi-trash" title="Löschen"
 							oncomplete="PF('entryRemove').show()">
 							<f:setPropertyActionListener value="#{entry}" target="#{manageBean.selectedQuestion}" />
-							<ui:debug hotkey="q" rendered="true" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 
 				<!-- dialogs -->
+				<script type="text/javascript">
+					function handleLoginRequest(xhr, status, args) {
+						if (args.validationFailed) {
+							PF('entryAdd').jq.effect("shake", {
+								times : 1
+							}, 25);
+						} else {
+							PF('entryAdd').hide();
+							$('#loginLink').fadeOut();
+						}
+					}
+				</script>
+
 				<p:dialog id="addDialog" header="Frage Erstellen" widgetVar="entryAdd" modal="true" showEffect="fade"
 					hideEffect="fade" resizable="false">
-					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel value="Frage:" />
-						<p:inputText id="addQuestion" value="#{manageBean.addQuestion}" required="true" />
+					<h:form>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Frage:" />
+							<p:inputText id="addQuestion" value="#{manageBean.addQuestion}" required="true" />
 
-						<h:outputLabel value="Antwort:" />
-						<p:inputText id="addAnswer" value="#{manageBean.addAnswer}" required="true" />
+							<h:outputLabel value="Antwort:" />
+							<p:inputText id="addAnswer" value="#{manageBean.addAnswer}" required="true" />
 
-						<f:facet name="footer">
-							<p:commandButton value="Erstellen" />
-							<p:commandButton value="Abbrechen" oncomplete="PF('entryAdd').hide();" />
-						</f:facet>
-					</h:panelGrid>
+							<f:facet name="footer">
+								<p:commandButton update=":manage:questionTable" process="@form" value="Erstellen" action="#{manageBean.addQuestion()}"
+									oncomplete="handleLoginRequest(xhr, status, args)" />
+								<p:commandButton value="Abbrechen" oncomplete="PF('entryAdd').hide();" />
+							</f:facet>
+						</h:panelGrid>
+					</h:form>
 				</p:dialog>
 
 				<p:dialog id="editDialog" header="Frage Bearbeiten" widgetVar="entryEdit" modal="true" showEffect="fade"
 					hideEffect="fade" resizable="false">
-					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel value="Frage:" />
-						<p:inputText id="editQuestion" value="#{manageBean.editQuestion}" required="true" />
+					<h:form>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Frage:" />
+							<p:inputText id="editQuestion" value="#{manageBean.editQuestion}" required="true" />
 
-						<h:outputLabel value="Antwort:" />
-						<p:inputText id="editAnswer" value="#{manageBean.editAnswer}" required="true" />
+							<h:outputLabel value="Antwort:" />
+							<p:inputText id="editAnswer" value="#{manageBean.editAnswer}" required="true" />
 
-						<f:facet name="footer">
-							<p:commandButton value="Bearbeiten" />
-							<p:commandButton value="Abbrechen" oncomplete="PF('entryEdit').hide();" />
-						</f:facet>
-					</h:panelGrid>
+							<f:facet name="footer">
+								<p:commandButton process="@form" value="Bearbeiten" update=":manage:questionTable" action="#{manageBean.editQuestion()}"
+									oncomplete="PF('entryEdit').hide();" />
+								<p:commandButton value="Abbrechen" oncomplete="PF('entryEdit').hide();" />
+							</f:facet>
+						</h:panelGrid>
+					</h:form>
 				</p:dialog>
 
 				<p:dialog id="deleteDialog" header="Frage wirklich Löschen?" widgetVar="entryRemove" modal="true" showEffect="fade"
 					hideEffect="fade" resizable="false">
-					<p:panelGrid columns="2">
-						<h:outputText value="Frage:" />
-						<h:outputText value="#{manageBean.selectedQuestion.question}" />
+					<h:form>
+						<p:panelGrid columns="2">
+							<h:outputText value="Frage:" />
+							<h:outputText value="#{manageBean.selectedQuestion.question}" />
 
-						<h:outputText value="Antwort:" />
-						<h:outputText value="#{manageBean.selectedQuestion.answer}" />
-						<f:facet name="footer">
-							<p:commandButton process="@this" value="Löschen" action="#{manageBean.removeQuestion()}"
-								oncomplete="PF('entryRemove').hide();" />
-							<p:commandButton value="Abbrechen" oncomplete="PF('entryRemove').hide();" />
-						</f:facet>
-					</p:panelGrid>
+							<h:outputText value="Antwort:" />
+							<h:outputText value="#{manageBean.selectedQuestion.answer}" />
+							<f:facet name="footer">
+								<p:commandButton process="@form" update=":manage:questionTable" value="Löschen" action="#{manageBean.removeQuestion()}"
+									oncomplete="PF('entryRemove').hide();" />
+								<p:commandButton value="Abbrechen" oncomplete="PF('entryRemove').hide();" />
+							</f:facet>
+						</p:panelGrid>
+					</h:form>
 				</p:dialog>
 
 			</h:form>
+
+			<ui:debug hotkey="q" rendered="true" />
 
 		</ui:define>
 	</ui:composition>

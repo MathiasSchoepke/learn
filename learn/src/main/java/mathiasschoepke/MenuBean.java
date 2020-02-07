@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +13,8 @@ import lombok.Setter;
 public class MenuBean implements Serializable {
 	private static final long serialVersionUID = -6099548527310926458L;
 	
-	@Getter(AccessLevel.PUBLIC)
-	@Setter(AccessLevel.PUBLIC)
+	@Getter
+	@Setter
 	private String page = "learn";
 	
 	public String changeContent(String page) {

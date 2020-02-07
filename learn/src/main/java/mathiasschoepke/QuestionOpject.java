@@ -1,14 +1,14 @@
 package mathiasschoepke;
 
-import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class QuestionOpject{
-	@Getter(AccessLevel.PUBLIC)
+
 	private int id;
-	@Getter(AccessLevel.PUBLIC)
 	private String question;
-	@Getter(AccessLevel.PUBLIC)
 	private String answer;
 	
 	public QuestionOpject(int id, String question, String answer) {
