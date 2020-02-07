@@ -31,29 +31,8 @@ public class DataBean implements Serializable {
 			data = new Data();
 			data.CreateMockaList();
 			System.out.println("Mocka");
+			rwdf.WriteToFile(data);
 		}
-		// questionList = new ArrayList<QuestionOpject>();
-		// questionList.add(new QuestionOpject(0, "Wie heißt der höhste Berg
-		// Deutschlands?", "Die Zugspitze (2962 m)"));
-		// questionList.add(new QuestionOpject(15, "Wie viele Bundesländer hat
-		// Deutschland?", "16"));
-		// questionList.add(new QuestionOpject(78, "Wie heißt die Hauptstandt
-		// von Deutschland?", "Berlin"));
-		// questionList.add(new QuestionOpject(80, "Wann gewann Deutschland den
-		// Eurovision?", "1982 und 2010"));
-		// questionList.add(new QuestionOpject(91, "Wann und wie oft war
-		// Deutschland Fußball-Weltmeister?", "1954, 1974, 1990, 2014"));
-		//
-		// // GSON
-		// GsonBuilder builder = new GsonBuilder();
-		// Gson gson = builder.create();
-		// String json = gson.toJson(questionList);
-		// System.out.println(json);
-		//
-		// data.setQuestionList(questionList);
-		//
-		// rwdf.WriteToFile(data);
-
 	}
 
 	@PreDestroy
